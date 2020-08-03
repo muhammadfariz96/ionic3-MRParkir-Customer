@@ -1,0 +1,54 @@
+<ion-content padding class="background">
+
+  <div class="kepala">
+
+    <ion-row class="logo">
+      <ion-col>
+        <img ion-img src="assets/imgs/mrparkir2.png">
+      </ion-col>
+    </ion-row>
+    <ion-row class="row-nama">
+      <ion-col>
+        <h3>{{profil.fullname}} </h3>
+      </ion-col>
+    </ion-row>
+    <ion-row class="row-nohp">
+      <ion-col>
+        <p>{{profil.nohp}} </p>
+      </ion-col>
+    </ion-row>
+
+  </div>
+
+  <div class="isi">
+    <ion-list>
+      <ion-item>
+        <ion-avatar item-start (click)="showImage(profil.TNKB)">
+          <img ion-img src="{{profil.TNKB}}">
+        </ion-avatar>
+        <p>TNKB</p>
+        <h2> {{profil.nokendaraan}} </h2>
+        <button ion-button outline item-end (click)="editTNKB(profil.nokendaraan)">Edit</button>
+      </ion-item>
+      <ion-item>
+        <ion-avatar item-start>
+          <img ion-img src="assets/imgs/saldo.png">
+        </ion-avatar>
+        <p>Balance</p>
+        <h2> {{profil.saldo | currency:"Rp. " :true:"0.0"}}</h2>
+        <button ion-button outline item-end (click)="showUserQR(UID)">TopUp</button>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-item (click)="openChangePass()">
+        <h2>Change Password</h2>
+        <ion-icon item-end name="ios-arrow-forward" color="abu"></ion-icon>
+      </ion-item>
+      <ion-item (click)="signOut()">
+        <h2>Logout</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

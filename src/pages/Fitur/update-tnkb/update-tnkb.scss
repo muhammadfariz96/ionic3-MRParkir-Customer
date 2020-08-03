@@ -1,0 +1,34 @@
+page-update-tnkb {
+    .background{
+        background: color($colors, back);
+    }
+
+    .center{
+        position: relative;
+        text-align: center;
+    }
+
+    ion-card.card{
+        background: rgba(0, 0, 0, 0.6px);
+        border-radius: 10px;
+        .item{
+            background: rgba(232, 230, 230, 0px);
+            color: color($colors, light);
+        }
+        .label{
+            color: color($colors, light);
+        }
+    }
+    .viewphoto{
+        background: rgba(232, 230, 230, 0px);
+        position: relative;
+        text-align: center;
+        color: color($colors, light);
+        ion-icon{
+            font-size: 20px;
+        }
+    }
+    img{
+        border-radius: 20px;
+    }
+}

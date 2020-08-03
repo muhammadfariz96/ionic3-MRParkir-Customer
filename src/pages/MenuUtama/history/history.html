@@ -1,0 +1,88 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<ion-title>
+			<h4 class="text">Transactions</h4>
+		</ion-title>
+	</ion-navbar>
+
+	<ion-segment [(ngModel)]="tabs" color="primary">
+		<ion-segment-button value="booking">
+			Booking
+		</ion-segment-button>
+		<ion-segment-button value="transaksi">
+			Transaksi
+		</ion-segment-button>
+		<ion-segment-button value="topup">
+			TopUp
+		</ion-segment-button>
+	</ion-segment>
+</ion-header>
+
+<ion-content class="background">
+
+	<div [ngSwitch]="tabs">
+		<ion-list *ngSwitchCase="'booking'">
+			<ion-item-sliding *ngFor="let book of Booking.reverse()">
+				<ion-item (click)="openDetail(book)">
+					<ion-col col-3 item-start class="tgl">{{book.TglDatang}}</ion-col>
+					<h2>
+						<b>- {{book.BayarBooking | currency:"Rp. " :true:"0.0"}}</b>
+					</h2>
+					<p> {{book.NoKen}} </p>
+					<p> Waktu : {{book.WktTiba}} </p>
+					<h2>{{book.StatusTransaksi}}</h2>
+					<ion-col col-3 item-end class="kav">{{book.NoKavling}}</ion-col>
+					<ion-icon item-end name="ios-arrow-forward"></ion-icon>
+				</ion-item>
+				<ion-item-options side="right">
+					<button ion-button color="hijau">
+						<ion-icon name="ios-checkbox" (click)="cekStatus(book)"></ion-icon>
+						Parking
+					</button>
+					<button ion-button color="merah">
+						<ion-icon name="ios-trash" (click)="cekCancel(book)"></ion-icon>
+						Cancel
+					</button>
+				</ion-item-options>
+			</ion-item-sliding>
+		</ion-list>
+	</div>
+
+	<div [ngSwitch]="tabs">
+		<ion-list *ngSwitchCase="'transaksi'">
+			<ion-item *ngFor="let history of Transaksi.reverse()" (click)="openDetail(history)">
+				<ion-col col-3 item-start class="tgl">{{history.TglDatang}}</ion-col>
+				<div [ngSwitch]="history.Status">
+					<h2 *ngSwitchCase="'Done'">
+						<b>- {{history.TotalBiaya | currency:"Rp. " :true:"0.0"}}</b>
+					</h2>
+					<h2 *ngSwitchCase="'Expired'">
+						<b>- {{history.BayarBooking | currency:"Rp. " :true:"0.0"}}</b>
+					</h2>
+					<h2 *ngSwitchCase="'Cancel'">
+						<b>- {{history.BayarBooking | currency:"Rp. " :true:"0.0"}}</b>
+					</h2>
+				</div>
+				<p> {{history.NoKen}} </p>
+				<p> Waktu : {{history.WktTiba}} </p>
+				<h2>{{history.Status}}</h2>
+				<ion-col col-3 item-end class="kav">{{history.NoKavling}}</ion-col>
+				<ion-icon item-end name="ios-arrow-forward"></ion-icon>
+			</ion-item>
+		</ion-list>
+	</div>
+
+	<div [ngSwitch]="tabs">
+		<ion-list *ngSwitchCase="'topup'">
+			<ion-item *ngFor="let top of TopupUser.reverse()" (click)="openDetailTop(top)">
+				<ion-col col-3 item-start class="tgl">{{top.TglTopup}}</ion-col>
+				<h2>
+					<b>{{top.NominalTopup | currency:"Rp. " :true:"0.0"}}</b>
+				</h2>
+				<p> Waktu : {{top.WktTopup}} </p>
+				<ion-icon item-end name="ios-arrow-forward"></ion-icon>
+			</ion-item>
+		</ion-list>
+	</div>
+
+</ion-content>

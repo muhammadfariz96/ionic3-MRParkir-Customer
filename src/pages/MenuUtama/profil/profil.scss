@@ -1,0 +1,62 @@
+page-profil {
+    
+    .kepala{
+		background:  color($colors, primary);
+		height:30%;
+		overflow:hidden;
+        position: absolute;
+        width:100% !important;
+        top:0;
+        left:0;
+        z-index:-1;
+        
+        .logo{
+            margin-top:1rem;
+            height: 60px;
+            position: relative;
+            text-align: center;
+            
+            img{
+                height: 60px;
+                margin-top: -5px;
+            }
+        }
+        
+        .row-nama{
+            height: 18px;
+            position: relative;
+            text-align: center;
+            margin-top: 1rem;
+            color:color($colors, light);
+            font-family: 'Gill Sans', Gill Sans MT, 'Calibri', 'Trebuchet MS', sans-serif;
+        }
+
+        .row-nohp{
+            font-size: 15px;
+            position: relative;
+            text-align: center;
+            margin-top: 1rem;
+            color:color($colors, light);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+    }
+
+    .isi{
+		background:  color($colors, back);
+		height:70%;
+		overflow:hidden;
+        position: absolute;
+        width:100% !important;
+        top:30%;
+        left:0;
+        z-index:-1;
+    }
+    .scroll-content{
+        align-content: center;
+        display: flex;
+        flex-direction:column;
+        justify-content:center;
+        text-align: center;
+    }
+    
+}

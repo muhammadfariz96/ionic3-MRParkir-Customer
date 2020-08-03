@@ -1,0 +1,19 @@
+page-history {
+    .text{
+        position: relative;
+        text-align: center;
+    }
+
+    .background{
+        background:  color($colors, back);
+    }
+
+    .tgl{
+        text-align: center;
+    }
+    .kav{
+        font-size: 40px;
+        text-align: left;
+    }
+
+}

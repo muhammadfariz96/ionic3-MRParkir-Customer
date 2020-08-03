@@ -1,0 +1,44 @@
+page-booking {
+    .text{
+        position: relative;
+        text-align: center;
+    }
+
+    .background{
+        background: color($colors, back);
+    }
+
+    .scroll-content{
+        align-content: center;
+		display: flex;
+		flex-direction:column;
+		justify-content:center;
+		text-align: center;
+    }
+
+    ion-card.card{
+        background: rgba(0, 0, 0, 0.6px);
+        border-radius: 10px;
+    }
+    ion-card-header{
+        color: color($colors, light);
+    }
+    .item{
+        background: rgba(232, 230, 230, 0px);
+    }
+    ion-label{
+        color: color($colors, light);
+    }
+    ion-input{
+        color: color($colors, light);
+        border-bottom: color($colors, light) solid 1px;
+    }
+    ion-datetime{
+        color: color($colors, light);
+        border-bottom: color($colors, light) solid 1px;
+    }
+    ion-select{
+        color: color($colors, light);
+        border-bottom: color($colors, light) solid 1px;
+    }
+}

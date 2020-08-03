@@ -1,0 +1,28 @@
+page-detailhistory {
+
+    .background{
+        background: color($colors, light);
+    }
+    .iconic{
+        font-size: 50px;
+    }
+    .kiri{
+        position: relative;
+        text-align: right;
+    }
+    .nominal{
+        color: orange;
+        position: relative;
+        text-align: right;
+    }
+    .col-kanan{
+        position: relative;
+        text-align: right;
+    }
+    .text-center{
+        position: relative;
+        text-align: center;
+        margin-top: 1px;
+    }
+
+}

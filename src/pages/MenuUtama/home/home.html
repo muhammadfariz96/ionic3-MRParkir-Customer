@@ -1,0 +1,262 @@
+<ion-header>
+
+
+</ion-header>
+<ion-content padding class="background">
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="kepala">
+
+    <ion-row>
+      <ion-col col-3 class="col-2-1">
+        <button ion-button clear (click)="openParking()">
+          <ion-icon name="ios-create-outline" color="light"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-6 class="col-2-2">
+        <img ion-img src="assets/imgs/mrparkir2.png">
+      </ion-col>
+      <ion-col col-3 class="col-2-3">
+        <button ion-button clear (click)="openBooking()">
+          <ion-icon name="ios-clipboard-outline" color="light"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-3 class="col-3-1" (click)="openParking()">
+        Parking
+      </ion-col>
+      <ion-col col-6>
+      </ion-col>
+      <ion-col col-3 class="col-3-3" (click)="openBooking()">
+        Booking
+      </ion-col>
+    </ion-row>
+
+
+  </div>
+
+
+  <ion-card class="tarif">
+    <ion-item>
+      <h2 class="text">
+        <b> Informasi Tarif Parkir </b>
+      </h2>
+    </ion-item>
+    <ion-grid class="text">
+      <ion-row class="judul">
+        <ion-col>
+          Tarif
+        </ion-col>
+        <ion-col>
+          Keterangan
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let trf of Tarif">
+        <ion-col>
+          {{trf.TarifParkir | currency:"Rp. " :true:"0.0"}}
+        </ion-col>
+        <ion-col>
+          {{trf.KetTarif}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+
+  <ion-card class="info-kavling">
+    <ion-item>
+      <h2 class="text">
+        <b> Informasi Ketersediaan Kavling Parkir </b>
+      </h2>
+    </ion-item>
+    <ion-slides pager>
+
+      <!--Kavling A-->
+      <ion-slide>
+        <ion-item>
+          <h2 class="text">
+            <b> Kavling A </b>
+          </h2>
+        </ion-item>
+        <ion-row class="judulA">
+          <ion-col>
+            No Kavling
+          </ion-col>
+          <ion-col>
+            Status
+          </ion-col>
+          <ion-col>
+            Keterangan
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let kav of KavA">
+          <ion-col>
+            {{kav.nomor}}
+          </ion-col>
+          <ion-col>
+            <ion-icon name="bicycle" color="{{kav.status}}"></ion-icon>
+          </ion-col>
+          <ion-col>
+            {{kav.keterangan}}
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="judulA" *ngFor="let parkir of JmlKavA">
+          <ion-col col-8>
+            Jumlah Parkir tersedia
+          </ion-col>
+          <ion-col>
+            {{parkir.Ptersedia}}
+          </ion-col>
+        </ion-row>
+        <ion-item></ion-item>
+
+      </ion-slide>
+      <!--Kavling A-->
+
+      <!--Kavling B-->
+      <ion-slide>
+        <ion-item>
+          <h2 class="text">
+            <b> Kavling B </b>
+          </h2>
+        </ion-item>
+        <ion-row class="judulB">
+          <ion-col>
+            No Kavling
+          </ion-col>
+          <ion-col>
+            Status
+          </ion-col>
+          <ion-col>
+            Keterangan
+          </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let kav of KavB">
+          <ion-col>
+            {{kav.nomor}}
+          </ion-col>
+          <ion-col>
+            <ion-icon name="bicycle" color="{{kav.status}}"></ion-icon>
+          </ion-col>
+          <ion-col>
+            {{kav.keterangan}}
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="judulB" *ngFor="let parkir of JmlKavB">
+          <ion-col col-8>
+            Jumlah Parkir tersedia
+          </ion-col>
+          <ion-col>
+            {{parkir.Ptersedia}}
+          </ion-col>
+        </ion-row>
+        <ion-item></ion-item>
+
+      </ion-slide>
+      <!--Kavling B-->
+
+      <!--Kavling C-->
+      <ion-slide>
+        <ion-item>
+          <h2 class="text">
+            <b> Kavling C </b>
+          </h2>
+        </ion-item>
+        <ion-row class="judulC">
+          <ion-col>
+            No Kavling
+          </ion-col>
+          <ion-col>
+            Status
+          </ion-col>
+          <ion-col>
+            Keterangan
+          </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let kav of KavC">
+          <ion-col>
+            {{kav.nomor}}
+          </ion-col>
+          <ion-col>
+            <ion-icon name="bicycle" color="{{kav.status}}"></ion-icon>
+          </ion-col>
+          <ion-col>
+            {{kav.keterangan}}
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="judulC" *ngFor="let parkir of JmlKavC">
+          <ion-col col-8>
+            Jumlah Parkir tersedia
+          </ion-col>
+          <ion-col>
+            {{parkir.Ptersedia}}
+          </ion-col>
+        </ion-row>
+        <ion-item></ion-item>
+
+      </ion-slide>
+      <!--Kavling C-->
+
+      <!--Kavling D-->
+      <ion-slide>
+        <ion-item>
+          <h2 class="text">
+            <b> Kavling D </b>
+          </h2>
+        </ion-item>
+        <ion-row class="judulD">
+          <ion-col>
+            No Kavling
+          </ion-col>
+          <ion-col>
+            Status
+          </ion-col>
+          <ion-col>
+            Keterangan
+          </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let kav of KavD">
+          <ion-col>
+            {{kav.nomor}}
+          </ion-col>
+          <ion-col>
+            <ion-icon name="bicycle" color="{{kav.status}}"></ion-icon>
+          </ion-col>
+          <ion-col>
+            {{kav.keterangan}}
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="judulD" *ngFor="let parkir of JmlKavD">
+          <ion-col col-8>
+            Jumlah Parkir tersedia
+          </ion-col>
+          <ion-col>
+            {{parkir.Ptersedia}}
+          </ion-col>
+        </ion-row>
+        <ion-item></ion-item>
+
+      </ion-slide>
+      <!--Kavling D-->
+
+
+    </ion-slides>
+  </ion-card>
+
+
+
+
+
+</ion-content>

@@ -1,0 +1,353 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <div [ngSwitch]="detailhistory.JenisTransaksi">
+      <ion-title class="text-center" *ngSwitchCase="'Reguler'">Detail Transaction</ion-title>
+      <ion-title class="text-center" *ngSwitchCase="'Booking'">Detail Booking</ion-title>
+      <ion-title class="text-center" *ngSwitchCase="'Cancel'">Detail Transaction</ion-title>
+      <ion-title class="text-center" *ngSwitchCase="'Expired'">Detail Transaction</ion-title>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="background">
+
+  <div [ngSwitch]="detailhistory.JenisTransaksi">
+    <ion-list *ngSwitchCase="'Reguler'">
+      <ion-item-group *ngIf="detailhistory.DurasiParkir">
+        <ion-item>
+          <ion-avatar item-start>
+            <ion-icon class="iconic" name="md-checkmark-circle-outline" color="hijau"></ion-icon>
+          </ion-avatar>
+          <h1>Transaction Success</h1>
+          <p> Transaction Success </p>
+        </ion-item>
+        <ion-item>
+          <ion-col item-start> TOTAL BAYAR </ion-col>
+          <ion-col class="nominal">
+            <h1>{{detailhistory.TotalBiaya | currency:"Rp. " :true:"0.0"}}</h1>
+          </ion-col>
+          <ion-col col-2 class="kiri" item-end>
+            <button ion-button clear small (click)="lihat()">
+              <ion-icon name="{{icon}}" color="dark"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-item>
+        <div *ngIf="detailhistory.BayarBooking">
+          <ion-item *ngIf="aksi">
+            <ion-col item-start>Amount</ion-col>
+            <ion-col class="col-kanan">
+              {{ amount.booking | currency:"Rp. " :true:"0.0"}}
+            </ion-col>
+          </ion-item>
+          <ion-item *ngIf="aksi">
+            <ion-col item-start>Biaya Booking</ion-col>
+            <ion-col class="nominal">
+              {{detailhistory.BayarBooking | currency:"Rp. -" :true:"0.0"}}
+            </ion-col>
+          </ion-item>
+        </div>
+        <div *ngIf="detailhistory.BiayaParkir">
+          <ion-item *ngIf="aksi">
+            <ion-col item-start>Amount</ion-col>
+            <ion-col class="col-kanan">
+              {{ amount.parkir | currency:"Rp. " :true:"0.0"}}
+            </ion-col>
+          </ion-item>
+          <ion-item *ngIf="aksi">
+            <ion-col item-start>Biaya Awal Parkir</ion-col>
+            <ion-col class="nominal">
+              {{detailhistory.BiayaParkir | currency:"Rp. -" :true:"0.0"}}
+            </ion-col>
+          </ion-item>
+        </div>
+      </ion-item-group>
+    </ion-list>
+
+    <ion-list no-lines *ngSwitchCase="'Reguler'">
+      <ion-item-group>
+        <ion-item-divider color="light">ORDER DETAIL</ion-item-divider>
+        <div [ngSwitch]="detailhistory.Status">
+          <ion-item>
+            <p>Nomor Transaksi</p>
+            <h2>{{detailhistory.NoTransaksi}}</h2>
+            <button ion-button outline item-end (click)="showQR(detailhistory.NoTransaksi)" *ngSwitchCase="'Done'">Show</button>
+          </ion-item>
+        </div>
+
+        <ion-item>
+          <p>Nomor Kendaraan</p>
+          <h2>{{detailhistory.NoKen}}</h2>
+        </ion-item>
+
+        <ion-item>
+          <p>Nomor HP</p>
+          <h2>{{detailhistory.NoHP}}</h2>
+        </ion-item>
+
+        <ion-item>
+          <p>Nomor Token Parkir</p>
+          <h2>{{detailhistory.NoToken}}</h2>
+        </ion-item>
+
+        <ion-item>
+          <p>Kavling</p>
+          <h2>{{detailhistory.NoKavling}}</h2>
+        </ion-item>
+
+        <ion-item class="text-center">
+          <ion-row>
+            <ion-col col-6> Tanggal Datang </ion-col>
+            <ion-col col-6> Tanggal Keluar </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6> {{detailhistory.TglDatang}} </ion-col>
+            <ion-col col-6> {{detailhistory.TglKeluar}} </ion-col>
+          </ion-row>
+        </ion-item>
+
+        <ion-item class="text-center">
+          <ion-row>
+            <ion-col col-6> Waktu Datang </ion-col>
+            <ion-col col-6> Waktu Keluar </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6> {{detailhistory.WktTiba}} </ion-col>
+            <ion-col col-6> {{detailhistory.Wktkeluar}} </ion-col>
+          </ion-row>
+        </ion-item>
+
+        <div [ngSwitch]="detailhistory.Status">
+          <div *ngSwitchCase="'Parked'">
+            <ion-item class="text-center">
+              <p>Lama Parkir</p>
+              <h2>{{durasi}}</h2>
+            </ion-item>
+            <ion-item class="text-center">
+              <p>Biaya Parkir</p>
+              {{ biaya | currency:"Rp. " :true:"0.0"}}
+            </ion-item>
+          </div>
+          <ion-item class="text-center" *ngSwitchCase="'Done'">
+            <p>Lama Parkir</p>
+            <h2>{{detailhistory.DurasiParkir}}</h2>
+          </ion-item>
+        </div>
+      </ion-item-group>
+    </ion-list>
+  </div>
+
+  <div [ngSwitch]="detailhistory.JenisTransaksi">
+    <ion-list *ngSwitchCase="'Booking'">
+      <ion-item-group>
+        <ion-item-divider color="light">STATUS ORDER</ion-item-divider>
+        <ion-item>
+          <ion-avatar item-start>
+            <ion-icon class="iconic" name="md-checkmark-circle-outline" color="hijau"></ion-icon>
+          </ion-avatar>
+          <h1>Booking Success</h1>
+          <p> Booking Success </p>
+        </ion-item>
+        <ion-item>
+          <ion-col item-start> BAYAR BOOKING </ion-col>
+          <ion-col class="nominal">
+            <h1>{{detailhistory.BayarBooking | currency:"Rp. " :true:"0.0"}}</h1>
+          </ion-col>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+
+    <ion-list no-lines *ngSwitchCase="'Booking'">
+      <ion-item-group>
+        <ion-item-divider color="light">ORDER DETAIL</ion-item-divider>
+        <ion-item>
+          <p>Nomor Transaksi</p>
+          <h2>{{detailhistory.NoTransaksi}}</h2>
+        </ion-item>
+
+        <ion-item>
+          <p>Nomor Kendaraan</p>
+          <h2>{{detailhistory.NoKen}}</h2>
+        </ion-item>
+
+        <ion-item>
+          <p>Nomor HP</p>
+          <h2>{{detailhistory.NoHP}}</h2>
+        </ion-item>
+
+        <ion-item>
+          <p>Kavling</p>
+          <h2>{{detailhistory.NoKavling}}</h2>
+        </ion-item>
+
+        <ion-item class="text-center">
+          <ion-row>
+            <ion-col> Tanggal Booking </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col> {{detailhistory.TglDatang}} </ion-col>
+          </ion-row>
+        </ion-item>
+
+        <ion-item class="text-center">
+          <ion-row>
+            <ion-col> Waktu Booking </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col> {{detailhistory.WktTiba}} </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+  </div>
+
+  <div [ngSwitch]="detailhistory.JenisTransaksi">
+    <ion-list *ngSwitchCase="'Cancel'">
+      <ion-item-group>
+        <ion-item-divider color="light">STATUS ORDER</ion-item-divider>
+        <ion-item>
+          <ion-avatar item-start>
+            <ion-icon class="iconic" name="md-close-circle" color="merah"></ion-icon>
+          </ion-avatar>
+          <h1>Booking Cancel</h1>
+          <p> Booking Cancel </p>
+        </ion-item>
+        <ion-item>
+          <ion-col item-start> BAYAR BOOKING </ion-col>
+          <ion-col class="nominal">
+            <h1>{{detailhistory.BayarBooking | currency:"Rp. " :true:"0.0"}}</h1>
+          </ion-col>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+
+    <ion-list no-lines *ngSwitchCase="'Cancel'">
+      <ion-item-group>
+        <ion-item-divider color="light">ORDER DETAIL</ion-item-divider>
+        <ion-item>
+          <p>Nomor Transaksi</p>
+          <h2>{{detailhistory.NoTransaksi}}</h2>
+        </ion-item>
+
+        <ion-item>
+          <p>Nomor Kendaraan</p>
+          <h2>{{detailhistory.NoKen}}</h2>
+        </ion-item>
+
+        <ion-item>
+          <p>Nomor HP</p>
+          <h2>{{detailhistory.NoHP}}</h2>
+        </ion-item>
+
+        <ion-item>
+          <p>Kavling</p>
+          <h2>{{detailhistory.NoKavling}}</h2>
+        </ion-item>
+
+        <ion-item class="text-center">
+          <ion-row>
+            <ion-col> Tanggal Booking </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col> {{detailhistory.TglDatang}} </ion-col>
+          </ion-row>
+        </ion-item>
+
+        <ion-item class="text-center">
+          <ion-row>
+            <ion-col> Waktu Booking </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col> {{detailhistory.WktTiba}} </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+  </div>
+
+  <div [ngSwitch]="detailhistory.JenisTransaksi">
+    <ion-list *ngSwitchCase="'Expired'">
+      <ion-item-group>
+        <ion-item-divider color="light">STATUS ORDER</ion-item-divider>
+        <ion-item>
+          <ion-avatar item-start>
+            <ion-icon class="iconic" name="md-time" color="merah"></ion-icon>
+          </ion-avatar>
+          <h1>Booking Expired</h1>
+          <p> Booking Expired </p>
+        </ion-item>
+        <ion-item>
+          <ion-col item-start> BAYAR BOOKING </ion-col>
+          <ion-col class="nominal">
+            <h1>{{detailhistory.BayarBooking | currency:"Rp. " :true:"0.0"}}</h1>
+          </ion-col>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+
+    <ion-list no-lines *ngSwitchCase="'Expired'">
+      <ion-item-group>
+        <ion-item-divider color="light">ORDER DETAIL</ion-item-divider>
+        <ion-item>
+          <p>Nomor Transaksi</p>
+          <h2>{{detailhistory.NoTransaksi}}</h2>
+        </ion-item>
+
+        <ion-item>
+          <p>Nomor Kendaraan</p>
+          <h2>{{detailhistory.NoKen}}</h2>
+        </ion-item>
+
+        <ion-item>
+          <p>Nomor HP</p>
+          <h2>{{detailhistory.NoHP}}</h2>
+        </ion-item>
+
+        <ion-item>
+          <p>Kavling</p>
+          <h2>{{detailhistory.NoKavling}}</h2>
+        </ion-item>
+
+        <ion-item class="text-center">
+          <ion-row>
+            <ion-col> Tanggal Booking </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col> {{detailhistory.TglDatang}} </ion-col>
+          </ion-row>
+        </ion-item>
+
+        <ion-item class="text-center">
+          <ion-row>
+            <ion-col> Waktu Booking </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col> {{detailhistory.WktTiba}} </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+  </div>
+
+  <ion-list no-lines>
+    <ion-item-group>
+      <ion-item>
+        <ion-col item-start> Status </ion-col>
+        <ion-col item-end class="col-kanan">
+          <button ion-button small round color="{{detailhistory.Status}}">{{detailhistory.Status}}</button>
+        </ion-col>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <div [ngSwitch]="detailhistory.Status">
+    <ion-list no-lines *ngSwitchCase="'Parked'">
+      <ion-item-group>
+        <ion-item>
+          <button ion-button block outline middle round color="merah"
+            (click)="Retrieve(detailhistory.NoTransaksi)">Retrieve</button>
+        </ion-item>
+      </ion-item-group>
+    </ion-list>
+  </div>
+
+</ion-content>

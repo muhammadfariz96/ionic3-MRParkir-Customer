@@ -1,0 +1,36 @@
+<ion-content class="background">
+
+  <ion-card>
+    <ion-navbar>
+      <ion-card-header>
+        NEW ACCOUNT
+      </ion-card-header>
+    </ion-navbar>
+    <ion-card-content>
+      <ion-list no-lines>
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input type="email" [(ngModel)]="user.email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Nama Lengkap</ion-label>
+          <ion-input type="text" [(ngModel)]="profil.fullname"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>No HP</ion-label>
+          <ion-input type="tel" maxlength="12" [(ngModel)]="profil.nohp"></ion-input>
+        </ion-item>
+        <ion-item></ion-item>
+        <button ion-button block outline color="light" (click)="cekForm()">Register</button>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

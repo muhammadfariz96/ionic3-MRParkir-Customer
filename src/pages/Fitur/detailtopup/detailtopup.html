@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title class="text-center">Detail Top Up</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="background">
+
+  <ion-list>
+    <ion-item-group>
+        <ion-item>
+            <ion-avatar item-start>
+                <ion-icon name="md-checkmark-circle-outline" color="hijau"></ion-icon>
+            </ion-avatar>
+            <h1>TOPUP SUCCESS</h1>
+            <p> TOPUP SUCCESS </p>
+          </ion-item>
+      <ion-item>
+        <ion-col item-start> NOMINAL </ion-col>
+        <ion-col class="nominal"><h1>{{detailtopup.NominalTopup | currency:"Rp. " :true:"0.0"}}</h1></ion-col>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <ion-list no-lines>
+    <ion-item-group>
+      <ion-item-divider color="light">TOPUP DETAIL</ion-item-divider>
+      <ion-item>
+          <p>Nomor TOPUP</p>
+          <h2>{{detailtopup.NoTopup}}</h2>
+      </ion-item>
+
+      <ion-item>
+          <p>Tanggal</p>
+          <h2>{{detailtopup.TglTopup}}</h2>
+      </ion-item>
+
+      <ion-item>
+          <p>Waktu</p>
+          <h2>{{detailtopup.WktTopup}}</h2>
+      </ion-item>
+
+    </ion-item-group>
+  </ion-list>
+
+
+
+</ion-content>

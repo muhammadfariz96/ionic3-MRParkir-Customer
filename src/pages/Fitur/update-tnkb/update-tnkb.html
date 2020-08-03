@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title class="center">
+      UPDATE TNKB
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="background">
+
+  <ion-card>
+    <ion-item>
+      <ion-label>No Kendaraan</ion-label>
+      <ion-input type="text" maxlength="9" [(ngModel)]="nokendaraan"
+        (ngModelChange)="nokendaraan = $event.toLocaleUpperCase()"></ion-input>
+    </ion-item>
+  </ion-card>
+
+  <ion-card *ngIf="aksi">
+    <ion-card-content>
+      <ion-row>
+        <button ion-button block round outline color="light" (click)="cekTNKB()">
+          TAKE PHOTO TNKB
+        </button>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="picurl">
+    <ion-card-content>
+      <img src="{{picurl}}">
+      <ion-row class="viewphoto">
+        <ion-col col-6 item-start>
+          <button ion-button round outline color="merah" (click)="ulang()" (click)="takeSTNK()">
+            <ion-icon name="md-refresh"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-6 item-end>
+          <button ion-button round outline color="hijau" (click)="simpanTNKB()">
+            <ion-icon name="md-checkmark"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

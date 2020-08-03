@@ -1,0 +1,29 @@
+page-register {
+
+    .background{
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(10deg,#1E90FF,#f4f4f4,#1E90FF);
+    }
+
+    .scroll-content{
+        align-content: center;
+        text-align: center;
+    }
+
+    ion-card.card{
+        background: rgba(0, 0, 0, 0.6px);
+        border-radius: 10px;
+    }
+    .item{
+        background: rgba(232, 230, 230, 0px);
+    }
+    ion-label{
+        color: color($colors, light);
+    }
+    ion-input{
+        color: color($colors, light);
+        border-bottom: color($colors, light) solid 1px;
+    }
+
+}

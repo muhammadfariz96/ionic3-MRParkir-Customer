@@ -1,0 +1,24 @@
+page-detailtopup {
+
+    .background{
+        background: color($colors, light);
+        ion-icon{
+            font-size: 50px;
+        }
+    }
+    .nominal{
+        color: orange;
+        position: relative;
+        text-align: right;
+    }
+    .col-kanan{
+        position: relative;
+        text-align: right;
+    }
+    .text-center{
+        position: relative;
+        text-align: center;
+        margin-top: 1px;
+    }
+
+}

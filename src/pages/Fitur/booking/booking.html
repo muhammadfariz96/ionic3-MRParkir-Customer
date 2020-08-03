@@ -1,0 +1,48 @@
+<ion-content class="background">
+  <ion-card>
+    <ion-navbar>
+      <ion-card-header>
+        <b>BOOKING</b>
+      </ion-card-header>
+    </ion-navbar>
+    <ion-card-content>
+      <ion-list no-lines>
+        <ion-item>
+          <ion-label floating>No Plat Kendaraan</ion-label>
+          <ion-input [(ngModel)]="detailprofil.nokendaraan" readonly="true" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>No HP</ion-label>
+          <ion-input [(ngModel)]="detailprofil.nohp" readonly="true" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Tanggal Booking</ion-label>
+            <ion-input [(ngModel)]="tglDatang" readonly="true" type="text"></ion-input>
+          </ion-item>
+
+        <ion-item>
+            <ion-label floating>Waktu Booking</ion-label>
+            <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="waktuBooking" name="booking_date"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Daftar Kavling</ion-label>
+          <ion-select [(ngModel)]="nokav" interface="popover">
+            <ion-option *ngFor="let kav of StatKav" value="{{kav.Value}}" disabled="{{kav.Status}}">
+              {{kav.Nama}} ({{kav.Ptersedia}})
+            </ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item></ion-item>
+        <button ion-button block outline color="light" (click)="cekForm(detailprofil.saldo)">Booked
+        </button>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>
